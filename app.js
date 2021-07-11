@@ -4,10 +4,6 @@
 // Search ✔️
 // Filter ✔️
 // Modal ✔️
-// name of region in select dropdown
-// 'No Match Found' message in search query
-// sort by population
-// const fastSort = require("fast-sort")
 
 const countriesElement = document.getElementById("countries")
 const toggleBtn = document.getElementById("toggle")
@@ -34,7 +30,7 @@ function displayCountries(countries) {
   if (countries.length) {
     countriesElement.innerHTML = ""
     console.log(countriesElement.children)
-    countries.forEach(country => {
+    countries.forEach((country) => {
       const countryEl = document.createElement("div")
       countryEl.classList.add("card")
 
@@ -106,11 +102,11 @@ function showCountryDetails(country) {
         </p>
         <p>
             <strong>Currencies:</strong>
-            ${country.currencies.map(currency => currency.code)}
+            ${country.currencies.map((currency) => currency.code)}
         </p>
         <p>
             <strong>Languages:</strong>
-            ${country.languages.map(language => language.name)}
+            ${country.languages.map((language) => language.name)}
         </p>
   `
 }
@@ -133,13 +129,13 @@ closeBtn.addEventListener("click", () => {
 })
 
 // Search Input
-searchInput.addEventListener("input", e => {
+searchInput.addEventListener("input", (e) => {
   const noMatch = document.querySelector(".no-result")
   const { value } = e.target
 
   const countryName = document.querySelectorAll(".country-name")
 
-  countryName.forEach(name => {
+  countryName.forEach((name) => {
     if (name.innerText.toLowerCase().indexOf(value.toLowerCase()) > -1) {
       name.parentElement.parentElement.style.display = "block"
       noMatch.style.display = "none"
@@ -150,12 +146,12 @@ searchInput.addEventListener("input", e => {
 })
 
 //Filtering REGIONS
-regionFilters.forEach(filter => {
+regionFilters.forEach((filter) => {
   filter.addEventListener("click", () => {
     const value = filter.innerText.toUpperCase()
     const countryRegion = document.querySelectorAll(".country-region")
 
-    countryRegion.forEach(region => {
+    countryRegion.forEach((region) => {
       if (region.innerText.toUpperCase().includes(value) || value === "ALL") {
         region.parentElement.parentElement.style.display = "block"
       } else {
@@ -164,23 +160,3 @@ regionFilters.forEach(filter => {
     })
   })
 })
-
-// sort by population
-// let desc = false
-// async function sortByPop() {
-//   const response = await fetch("https://restcountries.eu/rest/v2/all")
-//   const countries = await response.json()
-
-//   sort.addEventListener("click", () => {
-//     const pop = Array.from(countries, country => country.population)
-
-//     pop.sort((a, b) => {
-//       if (a < b) return -1
-//       if (a > b) return 1
-//       return 0
-//     })
-
-//     console.log(pop)
-//   })
-// }
-// sortByPop()
